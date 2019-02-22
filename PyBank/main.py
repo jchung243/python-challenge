@@ -3,16 +3,49 @@ import os
 import csv
 
 # Open CSV
-csv_path = os.path.join('.', 'Resources', 'budget_data.csv')
+csv_path = os.path.join('..', 'Resources', 'budget_data.csv')
 with open(csv_path, newline='') as budget_csv:
     budget_data = csv.reader(budget_csv, delimiter=',')
 
     # Separate header and call next line
     budget_header = next(budget_data)
 
+    # Define lists and variables to append budget values and store values
+    profit_tracker = [0.0]
+    profit_change = [0.0]
+    increase = 0.0
+    decrease = 0.0
+    x = 0
+
     # Loop through data
     for row in budget_data:
-        tot_months = row
+        #Advance counter
+        x = x + 1 
+        #Store date string in placeholder
+        date = row[0]
+
+        # Store profit value in tracker list
+        profit_tracker.append(float(row[1]))
+        #Store change from previous value to current value in list.
+        profit_change.append(float(profit_tracker[x]-profit_tracker[x-1]))
+
+        if profit_change[x] > increase:
+            increase = profit_change[x]
+            increase_date = date
+        if profit_change[x] < decrease:
+            decrease = profit_change[x]
+            decrease_date = date
+    
+    #Remove initial 0 value from list
+    del profit_tracker[0]
+    del profit_change[0]
+
+    #Total number of months displayed:
+    print(str(len(profit_tracker)))
+    print(str(sum(profit_tracker)))
+    print(str(sum(profit_change)/len(profit_change)))
+    print(f"{decrease_date} ${decrease}")
+    print(f"{increase_date} ${increase}")
 
 # Your task is to create a Python script that analyzes the records to calculate each of the following:
 
