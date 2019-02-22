@@ -19,16 +19,17 @@ with open(csv_path, newline='') as budget_csv:
 
     # Loop through data
     for row in budget_data:
-        #Advance counter
+        # Advance counter
         x = x + 1 
-        #Store date string in placeholder
+        # Store date string in placeholder
         date = row[0]
 
         # Store profit value in tracker list
         profit_tracker.append(float(row[1]))
-        #Store change from previous value to current value in list.
+        # Store change from previous value to current value in list.
         profit_change.append(float(profit_tracker[x]-profit_tracker[x-1]))
 
+        # Increase/decrease logic
         if profit_change[x] > increase:
             increase = profit_change[x]
             increase_date = date
@@ -36,11 +37,12 @@ with open(csv_path, newline='') as budget_csv:
             decrease = profit_change[x]
             decrease_date = date
     
-    #Remove initial 0 value from list
+    # Remove initial value from lists and additional value from profit change list
     del profit_tracker[0]
     del profit_change[0]
+    del profit_change[0]
 
-    #Total number of months displayed:
+    # Print statments
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {len(profit_tracker)}")
