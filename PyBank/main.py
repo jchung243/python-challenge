@@ -41,11 +41,13 @@ with open(csv_path, newline='') as budget_csv:
     del profit_change[0]
 
     #Total number of months displayed:
-    print(str(len(profit_tracker)))
-    print(str(sum(profit_tracker)))
-    print(str(sum(profit_change)/len(profit_change)))
-    print(f"{decrease_date} ${decrease}")
-    print(f"{increase_date} ${increase}")
+    print("Financial Analysis")
+    print("----------------------------")
+    print(f"Total Months: {len(profit_tracker)}")
+    print(f"Total: ${sum(profit_tracker)}")
+    print(f"Average Change: ${sum(profit_change)/len(profit_change)}")
+    print(f"Greatest Increase in Profits: {increase_date} (${increase})")
+    print(f"Greatest Decrease in Profits: {decrease_date} (${decrease})")
 
 # Your task is to create a Python script that analyzes the records to calculate each of the following:
 
