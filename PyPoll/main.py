@@ -34,37 +34,19 @@ with open(csv_path, newline='') as election_csv:
     # Print header and total votes
     print("Election Results")
     print("-------------------------")
+    output = open("PyPoll_Output.txt", "w")
+    output.write("Election Results\n")
+    output.write("-------------------------\n")
 
     # Loop though dictonary to print election results
     for key in votes:
         print(f"{key}: {round(100*(votes[key]/votesum),3)}% ({votes[key]})")
+        output.write(f"{key}: {round(100*(votes[key]/votesum),3)}% ({votes[key]})\n")
     
     # Print winner
     print("-------------------------")
     print(f"Winner: {winner}")
     print("-------------------------")
-
-# Khan: 63.000% (2218231)
-# Correy: 20.000% (704200)
-# Li: 14.000% (492940)
-# O'Tooley: 3.000% (105630)
-# -------------------------
-# Winner: Khan
-# -------------------------
-
-    # Export to text file
-    #output = open("PyBank_Output.txt", "w")
-    #output.write("Financial Analysis\n")
-    #output.close()
-
-# Election Results
-# -------------------------
-# Total Votes: 3521001
-# -------------------------
-# Khan: 63.000% (2218231)
-# Correy: 20.000% (704200)
-# Li: 14.000% (492940)
-# O'Tooley: 3.000% (105630)
-# -------------------------
-# Winner: Khan
-# -------------------------
+    output.write("-------------------------\n")
+    output.write(f"Winner: {winner}\n")
+    output.write("-------------------------\n")
