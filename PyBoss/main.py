@@ -71,4 +71,16 @@ with open(csv_path, newline='') as employee_csv:
         first,last = row[1].split(" ")
         row[1] = first
         row.insert(2, last)
+
+        # Change DOB
+        year,month,day = row[3].split("-")
+        row[3] = f"{month}/{day}/{year}"
+
+        # Change SSN
+        first,second,third = row[4].split("-")
+        row[4] = f"***-***-{third}"
+
+        # Lookup State and change
+        row[5] = us_state[row[5]]
+
     print(row)
