@@ -34,8 +34,12 @@ with open(csv_path, newline='') as election_csv:
     # Print header and total votes
     print("Election Results")
     print("-------------------------")
+    print(f"Total Votes: {votesum}")
+    print("-------------------------")
     output = open("PyPoll_Output.txt", "w")
     output.write("Election Results\n")
+    output.write("-------------------------\n")
+    output.write(f"Total Votes: {votesum}")
     output.write("-------------------------\n")
 
     # Loop though dictonary to print election results
