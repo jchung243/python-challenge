@@ -54,3 +54,4 @@ with open(csv_path, newline='') as election_csv:
     output.write("-------------------------\n")
     output.write(f"Winner: {winner}\n")
     output.write("-------------------------\n")
+    output.close()
