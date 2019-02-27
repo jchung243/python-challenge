@@ -52,12 +52,11 @@ with open(csv_path, newline='') as budget_csv:
     print(f"Greatest Decrease in Profits: {decrease_date} (${decrease})")
 
     # Export to text file
-    output = open("PyBank_Output.txt", "w")
-    output.write("Financial Analysis\n")
-    output.write("----------------------------\n")
-    output.write(f"Total Months: {len(profit_tracker)}\n")
-    output.write(f"Total: ${sum(profit_tracker)}\n")
-    output.write(f"Average Change: ${round(sum(profit_change)/len(profit_change), 2)}\n")
-    output.write(f"Greatest Increase in Profits: {increase_date} (${increase})\n")
-    output.write(f"Greatest Decrease in Profits: {decrease_date} (${decrease})\n")
-    output.close()
+    with open("PyBank_Output.txt", "w") as output:
+        output.write("Financial Analysis\n")
+        output.write("----------------------------\n")
+        output.write(f"Total Months: {len(profit_tracker)}\n")
+        output.write(f"Total: ${sum(profit_tracker)}\n")
+        output.write(f"Average Change: ${round(sum(profit_change)/len(profit_change), 2)}\n")
+        output.write(f"Greatest Increase in Profits: {increase_date} (${increase})\n")
+        output.write(f"Greatest Decrease in Profits: {decrease_date} (${decrease})\n")

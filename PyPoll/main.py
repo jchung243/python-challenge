@@ -36,22 +36,29 @@ with open(csv_path, newline='') as election_csv:
     print("-------------------------")
     print(f"Total Votes: {votesum}")
     print("-------------------------")
-    output = open("PyPoll_Output.txt", "w")
-    output.write("Election Results\n")
-    output.write("-------------------------\n")
-    output.write(f"Total Votes: {votesum}")
-    output.write("-------------------------\n")
-
+    
     # Loop though dictonary to print election results
     for key in votes:
         print(f"{key}: {round(100*(votes[key]/votesum),3)}% ({votes[key]})")
-        output.write(f"{key}: {round(100*(votes[key]/votesum),3)}% ({votes[key]})\n")
     
     # Print winner
     print("-------------------------")
     print(f"Winner: {winner}")
     print("-------------------------")
-    output.write("-------------------------\n")
-    output.write(f"Winner: {winner}\n")
-    output.write("-------------------------\n")
-    output.close()
+
+    with open("PyPoll_Output.txt", "w") as output:
+        #Print header and total votes to CSV
+        output.write("Election Results\n")
+        output.write("-------------------------\n")
+        output.write(f"Total Votes: {votesum}")
+        output.write("-------------------------\n")
+
+        # Loop though dictonary to print election results
+        for key in votes:
+            output.write(f"{key}: {round(100*(votes[key]/votesum),3)}% ({votes[key]})\n")
+        
+        # Print winner
+        output.write("-------------------------\n")
+        output.write(f"Winner: {winner}\n")
+        output.write("-------------------------\n")
+        output.close()
